@@ -183,7 +183,7 @@ import { PrismaClient } from "@prisma/client";
 const client = new PrismaClient();
 
 const getCourses = async () => {
-  const courses = await client.product.findMany();
+  const courses = await client.course.findMany();
   console.log(courses)
 };
 
