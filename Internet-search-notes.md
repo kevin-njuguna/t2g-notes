@@ -1,5 +1,4 @@
-
-#  What Happens When You Type `google.co` and Press Enter?
+# What Happens When You Type `google.co` and Press Enter?
 
 In the realm of software engineering, understanding the underlying mechanisms that power our daily internet interactions is crucial. When you type https://www.google.com into your browser and hit Enter, a fascinating journey begins - transcending various layers of the web stack before the desired webpage graces your screen. Let's delve into this journey, demystifying the complexities involved.
 
@@ -20,16 +19,18 @@ In the realm of software engineering, understanding the underlying mechanisms th
 ## 2. Browser Cache Check
 
 - Before making any network requests, the browser checks:
+
   - **DNS cache** (The DNS cache (also known as DNS resolver cache) is a temporary DNS storage on a device (your computer, smartphone, server, etc.) that contains DNS records of already visited domain names (A records for IPv4 addresses, AAAA records for IPv6, etc.).)
 
   - **HTTP cache** (stored content from earlier visits).
+
 - If the resource is fresh and valid, it could be served directly from cache. The HTTP cache stores a response associated with a request and reuses the stored response for subsequent requests.
 
 ---
 
 ## 3. DNS Resolution
 
-If the local DNS resolver does not have the most recent copy of the DNS record, it sends a request to a root nameserver. The root nameserver replies with the address of a top-level domain (TLD) nameserver, such as .com 
+If the local DNS resolver does not have the most recent copy of the DNS record, it sends a request to a root nameserver. The root nameserver replies with the address of a top-level domain (TLD) nameserver, such as .com
 
 - The local DNS resolver sends a request to the TLD nameserver.
 - The TLD nameserver responds with the address of the authoritative nameserver for the domain.
@@ -38,15 +39,9 @@ If the local DNS resolver does not have the most recent copy of the DNS record, 
 - The local DNS resolver sends the IP address back to the browser.
 - The browser sends a request to the server at the IP address to retrieve the webpage.
 
-
-
 This process may involve additional steps if the DNS record is not found at any of the nameservers or if the DNS record is set up to use a service such as DNS load balancing or content delivery networks (CDN).
 
-
-
 The duration for which the DNS record is cached (known as the "TTL" or "Time To Live") is determined by the authoritative nameserver and can be customized by the domain owner.
-
-
 
 ---
 
@@ -57,17 +52,18 @@ The duration for which the DNS record is cached (known as the "TTL" or "Time To 
 
 In our case:
 
-  ```
-  Client → SYN → Server  
-  Server → SYN-ACK → Client  
-  Client → ACK → Server
-  ```
+```
+Client → SYN → Server
+Server → SYN-ACK → Client
+Client → ACK → Server
+```
 
 ---
 
 ## 5. TLS Handshake (SSL)
 
 - Since HTTPS is used, a **TLS handshake** begins:
+
   - Browser verifies server's **SSL certificate**.
   - Secure keys are exchanged to establish an **encrypted channel**.
   - This ensures **data confidentiality and integrity**.
@@ -80,15 +76,13 @@ In our case:
 
 -When you enter "google.com" into your browser, the browser is like the sender of the message. The server hosting google.com is like the recipient. The browser sends a request for the webpage using HTTPS, which is like putting the request in a locked box and sending it to the server. The server then sends the webpage back to the browser using HTTPS, which is like putting the webpage in the locked box and sending it back to the browser.
 
-
-
 ---
 
 ## 7. Load balancer
 
 - A load balancer is a tool that distributes incoming network traffic across a group of servers or resources. Its main function is to ensure that the traffic is distributed evenly across the servers to prevent overloading any single server and to increase the overall capacity and reliability of the system.
 
-- Google requires many servers to serve all users since it receives billions of website visitiors a day. 
+- Google requires many servers to serve all users since it receives billions of website visitiors a day.
 
 - When a browser tries to access google.com, the load balancer receives the incoming request from the browser and forwards it to one of the servers in the Google server network. The server chosen will depend on the type of load balancing algorithm implemented.
 
@@ -96,8 +90,7 @@ In our case:
 
 A web server is a software that is in charge of managing requests for web pages from clients (such as a browser attempting to access google.com). When a client sends a request for a web page to a website server, the server handles the request and returns the appropriate response to the client.
 
-Where applicable, the server may redirect the user.
----
+## Where applicable, the server may redirect the user.
 
 ## 8. HTTP Redirect (if applicable)
 
@@ -122,6 +115,7 @@ When a browser receives a response from a website server, it processes the HTML,
 ---
 
 ## 10. Browser Rendering
+
 After recieving the response from the website server, the browser utilizes these files to display the webpage and present it to you.
 
 This method includes the following:
